@@ -1,5 +1,76 @@
 # hackernews-py
 
+----
+
+# Hacker News Search Tool: Stay Updated with the Latest Discussions  
+   
+Are you looking to keep up with the most recent conversations on Hacker News about topics that matter to you? This simple Python script allows you to search through Hacker News stories and comments based on your query and a specified time window. Whether you're interested in the latest trends in technology, programming, startups, or any other subject, this tool helps you find relevant discussions quickly and efficiently.  
+   
+## Key Features  
+   
+- **Real-Time Search**: Fetches the latest stories and comments matching your query from Hacker News.  
+- **Time Window Filtering**: Allows you to specify a time window (in hours) to focus on recent content.  
+- **Detailed Results**: Provides essential information like title, author, creation time, points, number of comments, and a text snippet.  
+- **Direct Access**: Includes direct links to the Hacker News posts or comments.  
+- **Optional Content Retrieval**: Offers the option to retrieve and display content from URLs using Jina AI (functionality to be implemented).  
+   
+## Why Use This Tool?  
+   
+Staying informed can be time-consuming. This script simplifies the process by:  
+   
+- **Saving Time**: Quickly fetching and displaying relevant discussions without manual browsing.  
+- **Customizable Searches**: Tailoring results based on your interests and a specific timeframe.  
+- **Enhancing Engagement**: Providing quick access to discussions allows you to engage with the community promptly.  
+   
+## How to Use  
+   
+1. **Run the Script**: Execute the Python script in your terminal or command prompt:  
+  
+   ```bash  
+   python hackernews.py  
+   ```  
+   
+2. **Enter Your Query**: When prompted, input the keyword or phrase you're interested in (e.g., `python`, `startup`, `AI`).  
+   
+3. **Specify the Time Window**: Input the number of hours to define how far back the search should go (e.g., `24` for the past day).  
+  
+   ```  
+   Enter your search query (e.g., 'python' or 'ai'): python  
+   Enter the time window in hours (e.g., '24' for the last day): 24  
+   ```  
+   
+4. **View Results**: The script will display the results, including:  
+  
+   - **Type**: Whether it's a story or a comment.  
+   - **Title**: The title of the story or associated story for comments.  
+   - **Author**: The username of the poster.  
+   - **Created At**: When it was posted, along with how much time has passed since.  
+   - **Points and Comments**: The number of points and comments it has received.  
+   - **Text Snippet**: A brief excerpt from the story or comment.  
+   - **Links**: Direct URLs to the Hacker News post or the content if available.  
+   
+5. **Optional Content Retrieval**: For items with an external URL, you can choose to fetch and display the content using Jina AI (note that this feature needs to be implemented).  
+  
+   ```  
+   This item has a URL. Fetch content with Jina AI? (y/n): n  
+   ```  
+   
+## Benefits  
+   
+- **Stay Informed**: Keep up with the latest discussions and trends in your areas of interest.  
+- **Quick Access**: Access summaries and key information without navigating away from your terminal.  
+- **Community Engagement**: Join conversations early by finding new posts and comments shortly after they're made.  
+   
+## Note on Content Retrieval  
+   
+The script includes a placeholder for a function called `get_url_text_with_jina`, intended to fetch and process content from URLs using Jina AI. This functionality is not currently implemented (`pass` is used as a placeholder). To enable this feature:  
+   
+- Implement the `get_url_text_with_jina` function.  
+- Ensure you have any necessary dependencies installed.  
+- Handle exceptions and errors appropriately to maintain the script's stability.
+
+---------
+
 ```python
 
 import html  
