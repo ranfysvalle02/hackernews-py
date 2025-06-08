@@ -72,12 +72,11 @@ The script includes a placeholder for a function called `get_url_text_with_jina`
 ---------
 
 ```python
-
 import html  
 import os  
 import re  
+import urllib.parse  
 from datetime import datetime, timedelta, timezone  
-  
 import requests  
   
 def search_hackernews(query: str, window_size_hours: int):  
@@ -113,6 +112,33 @@ def search_hackernews(query: str, window_size_hours: int):
         hits.append(item)  
     return hits  
   
+def get_url_text_with_jina(url):  
+    """  
+    Fetches the main textual content of the given URL using the Jina AI API.  
+    """  
+    # Hardcoded Jina AI API key  
+    api_key = "jina_2897436cf38044a6b4601f69eebb5237ypcyC_CdmbZABOEoE7QclK-urrPr"  
+  
+    # Encode the URL  
+    encoded_url = urllib.parse.quote(url, safe='')  
+    endpoint = f"https://r.jina.ai/{encoded_url}"  
+    headers = {  
+        'Authorization': f'Bearer {api_key}'  
+    }  
+  
+    try:  
+        response = requests.get(endpoint, headers=headers)  
+        response.raise_for_status()  
+        content = response.text  
+        return content  
+    except requests.exceptions.HTTPError as http_err:  
+        print(f"HTTP error occurred: {http_err}")  
+        print(f"Response content: {response.text}")  
+        return None  
+    except Exception as err:  
+        print(f"An error occurred: {err}")  
+        return None  
+  
 def main():  
     """  
     Main function to interactively search Hacker News.  
@@ -131,7 +157,7 @@ def main():
             print(f"Type: {item_type}")  
             print(f"Title: {item['title']}")  
             print(f"Author: {item['author']}")  
-              
+  
             # Parse and format the created_at timestamp  
             created_at_str = item['created_at']  
             try:  
@@ -177,21 +203,17 @@ def main():
                 if choice == 'y':  
                     content = get_url_text_with_jina(item['url'])  
                     if content:  
-                        print("\n  --- Jina AI Content ---")  
+                        print("\n  --- Extracted Content ---")  
                         print(content)  
                         print("  --- End of Content ---\n")  
                     else:  
-                        print("  [Jina AI] No content retrieved.")  
-            print("\n")  
+                        print("  [Content Extraction] No content retrieved.")  
+                print("\n")  
     else:  
         print("No results found.")  
   
-# Ensure get_url_text_with_jina function is present  
-def get_url_text_with_jina(url):  
-    # ... (same as before)  
-    pass  
-  
 if __name__ == "__main__":  
-    main()  
+    main()
 
+```
 ```
